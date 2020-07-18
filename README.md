@@ -41,7 +41,13 @@ Also thanks to Leonardo Balland who made “seepizz” for his [tutorial](https:
 
 # Get started
 
-- [ ] todo
+- create new react native app
+- get dependencies:
+ - Toast from ['react-native-simple-toast'](https://www.npmjs.com/package/react-native-simple-toast)
+ - ImagePicker from ['react-native-image-picker'](https://www.npmjs.com/package/react-native-image-picker)
+ - Clarifai from [their website](https://www.clarifai.com/) you will have to make and verify an account to get an api key
+ 
+- copy 
 
 # TODO
 - [ ] get started
