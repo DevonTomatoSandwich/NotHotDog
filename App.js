@@ -48,7 +48,7 @@ class App extends Component {
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error); // todo real device ios permissions
+        console.log('ImagePicker Error: ', response.error);
       } else {
         this.setState({ isLoading: true, result: false, isHotDog: false })
         
