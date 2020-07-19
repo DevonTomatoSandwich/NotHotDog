@@ -43,7 +43,7 @@ Also thanks to Leonardo Balland who made “seepizz” for his [tutorial](https:
 # Get started
 
 - Create new react native app
-
+- Download App.js and replace it with the current App.js in the root dir
 - Get dependencies:
 
   - Toast from ['react-native-simple-toast'](https://www.npmjs.com/package/react-native-simple-toast)
