@@ -89,15 +89,23 @@ class App extends Component {
         id: Clarifai.GENERAL_MODEL,
         version: "aa7f35c01e0642fda5cf400f543e7c40",
       }, 
-      data
+      data,
+      {
+        selectConcepts: [
+          {name: 'dog'},
+          {name: 'tongue'},
+          {name: 'hotdog'},
+        ]
+      }
     ).then(response => {
+      console.log('response found')
 
-      // a list of all concepts in the image e.g.
-      // {id:ai_LRzQhTHd, name:puppy, value:0.9876596, app_id:main}
+      // a list of the three selected concepts in the image e.g.
+      // {id:ai_LRzQhTHd, name:dog, value:0.9876596, app_id:main}
       const concepts = response.outputs[0].data.concepts;
       
       if (concepts && concepts.length > 0) {
-        console.log('concepts ok');
+        console.log('concepts ok. concepts.length = ' + concepts.length);
 
         hotdogStats = {
           hotdog: -1,
@@ -106,33 +114,41 @@ class App extends Component {
         }
 
         for (const concept of concepts) {
-          
-          // console.log(concept.value + ' concept.name = ' + concept.name);
-          if(concept.name === 'hotdog')
+          console.log(concept.value + ' concept.name = ' + concept.name + ' concept.id = ' + concept.id);
+          if(concept.name === 'hotdog'){
+            console.log('changing hotdogStats.hotdog to: ' + concept.value);
             hotdogStats.hotdog = concept.value
-          else if(concept.name === 'dog') 
+          }
+          else if(concept.name === 'dog') {
+            console.log('changing hotdogStats.dog to: ' + concept.value);
             hotdogStats.dog = concept.value
-          else if(concept.name === 'tongue') 
+          }
+          else if(concept.name === 'tongue') {
+            console.log('changing hotdogStats.tongue to: ' + concept.value);
             hotdogStats.tongue = concept.value
+          }
           
-          if(hotdogStats.hotdog >= 0.95)
+          if(hotdogStats.hotdog >= 0.93){
+            console.log('returning as hotdog food');
             return this.setState({
               isLoading: false,
               isResult: true, 
               isHotDog: true, 
               accuracy: hotdogStats.hotdog 
-            })
+            })}
           
-          if(hotdogStats.dog >= 0.95 && hotdogStats.tongue >= 0.9)
+          if(hotdogStats.dog >= 0.95 && hotdogStats.tongue >= 0.7){
+            console.log('returning as hot dog animal');
             return this.setState({
               isLoading: false,
               isResult: true,
               isHotDog: true,
               accuracy: hotdogStats.dog * hotdogStats.tongue,
-            })
+            })}
           
         }
       }
+      console.log('returning as not hot dog');
       this.setState({ isResult: true, isLoading: false, })
     })
     .catch(() => {
@@ -210,8 +226,8 @@ class App extends Component {
   }
 
   getPercent1dp() {
-    res = Math.round(this.state.accuracy * 1000) * 0.1 
-    return res.toFixed(1)
+    var percent = Math.round(this.state.accuracy * 1000) * 0.1;
+    return percent.toFixed(1)
   }
   
 }
