@@ -3,7 +3,7 @@ Cross platform App built with react native to determine whether or not an image 
 
 # Store links
 
- - [Google Play Store](https://apps.apple.com/us/app/not-hot-dog/id1523654226)
+ - [Google Play Store](https://play.google.com/store/apps/details?id=com.not_hot_dog&hl=en&gl=US)
  - [Apple App Store](https://apps.apple.com/us/app/not-hot-dog/id1523654226)
 
 # Appearence
